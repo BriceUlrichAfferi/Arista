@@ -18,5 +18,6 @@
     <string name="add">Add</string>
     <string name="cancel">Cancel</string>
     <string name="fill_all_fields">Please fill all fields.</string>
+    <string name="select_date">Select Date</string>
 
 </resources>

@@ -161,7 +161,6 @@ class ExerciseFragment : Fragment(), DeleteExerciseInterface {
 
     override fun deleteExercise(exercise: Exercise?) {
         exercise?.let {
-            // Show confirmation dialog before deleting the exercise
             AlertDialog.Builder(requireContext())
                 .setTitle("Delete Exercise")
                 .setMessage("Are you sure you want to delete this exercise?")

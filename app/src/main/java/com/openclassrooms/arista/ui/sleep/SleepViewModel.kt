@@ -41,7 +41,6 @@ class SleepViewModel @Inject constructor(
 
     fun addSleep(sleep: Long, duration: Int, quality: Int) {
         viewModelScope.launch(Dispatchers.IO) {
-            // Pass all three parameters to the use case
             addNewSleepUseCase.execute(sleep, duration, quality)
             fetchSleeps()
         }

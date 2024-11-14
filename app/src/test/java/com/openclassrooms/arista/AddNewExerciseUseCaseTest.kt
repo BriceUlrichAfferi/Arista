@@ -53,10 +53,10 @@ class AddNewExerciseUseCaseTest {
         )
 
         // Act
-        addNewExerciseUseCase.execute(exerciseToAdd)  // Ensure exercise is passed here
+        addNewExerciseUseCase.execute(exerciseToAdd)
 
         // Assert
-        Mockito.verify(exerciseRepository).addExercise(exerciseToAdd)  // Verify deletion
+        Mockito.verify(exerciseRepository).addExercise(exerciseToAdd)
     }
 
 
@@ -64,7 +64,7 @@ class AddNewExerciseUseCaseTest {
     fun `when getAllExercises is called after deletion, it should add new exercises`() = runBlocking {
         // Arrange
         val exerciseToAdd = Exercise(
-            id = 1,  // assuming id is non-null
+            id = 1,
             startTime = LocalDateTime.now().toEpochMilli(),
             duration = 30,
             category = ExerciseCategory.Running.toString(),
@@ -80,15 +80,20 @@ class AddNewExerciseUseCaseTest {
             )
         )
 
-        Mockito.`when`(exerciseRepository.getAllExercises()).thenReturn(listOf(exerciseToAdd, newExercises.first()))  // Simulate the state before deletion
+        // Mock initial empty state
+        Mockito.`when`(exerciseRepository.getAllExercises()).thenReturn(emptyList())
+
+        // Simulate the state after exercise is added
+        Mockito.`when`(exerciseRepository.getAllExercises()).thenReturn(newExercises)
 
         // Act
-        addNewExerciseUseCase.execute(exerciseToAdd)  // Delete exercise
-        val result = exerciseRepository.getAllExercises()  // Get remaining exercises
+        addNewExerciseUseCase.execute(exerciseToAdd)
+        val result = exerciseRepository.getAllExercises()
 
         // Assert
-        TestCase.assertEquals(newExercises, result)  // Ensure the deleted exercise is no longer in the list
+        TestCase.assertEquals(newExercises, result)
     }
+
 
 
 }

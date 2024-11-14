@@ -29,7 +29,6 @@ class SleepFragment : Fragment() {
 
     private val viewModel: SleepViewModel by viewModels()
     private val sleepAdapter = SleepAdapter(emptyList()) { sleep ->
-        // Handle the delete action here
         showDeleteConfirmationDialog(sleep)
     }
     override fun onCreateView(
@@ -55,30 +54,24 @@ class SleepFragment : Fragment() {
     }
 
     private fun showAddSleepDialog() {
-        // Inflate the dialog view
         val dialogView = LayoutInflater.from(context).inflate(R.layout.dialog_add_sleep, null)
 
-        // Initialize dialog elements
         val dateEditText: EditText = dialogView.findViewById(R.id.dateEditText)
         val timeEditText: EditText = dialogView.findViewById(R.id.timeEditText)
         val sleepDurationTimeEditTextDialog: EditText = dialogView.findViewById(R.id.sleepDurationTimeEditTextDialog)
         val qualityEditTextDialog: EditText = dialogView.findViewById(R.id.qualityEditTextDialog)
 
-        // Initialize calendar and time picker icons
         val datePickerIcon: ImageView = dialogView.findViewById(R.id.datePickerIcon)
         val timePickerIcon: ImageView = dialogView.findViewById(R.id.timePickerIcon)
 
-        // Set the calendar icon click listener
         datePickerIcon.setOnClickListener {
             showDatePicker(dateEditText)
         }
 
-        // Set the time picker icon click listener
         timePickerIcon.setOnClickListener {
             showTimePicker(timeEditText)
         }
 
-        // Create and show the dialog
         val dialog = AlertDialog.Builder(requireContext())
             .setTitle("Add Sleep")
             .setView(dialogView)
@@ -100,7 +93,6 @@ class SleepFragment : Fragment() {
     }
 
     private fun showDatePicker(dateEditText: EditText) {
-        // Show DatePickerDialog
         val currentDate = LocalDateTime.now()
         val year = currentDate.year
         val month = currentDate.monthValue
@@ -109,7 +101,6 @@ class SleepFragment : Fragment() {
         val datePickerDialog = DatePickerDialog(
             requireContext(),
             { _, selectedYear, selectedMonth, selectedDayOfMonth ->
-                // Update the date in the EditText field
                 dateEditText.setText("$selectedDayOfMonth/${selectedMonth + 1}/$selectedYear")
             },
             year, month - 1, dayOfMonth
@@ -119,7 +110,6 @@ class SleepFragment : Fragment() {
     }
 
     private fun showTimePicker(timeEditText: EditText) {
-        // Show TimePickerDialog
         val currentTime = LocalDateTime.now()
         val hour = currentTime.hour
         val minute = currentTime.minute
@@ -127,7 +117,6 @@ class SleepFragment : Fragment() {
         val timePickerDialog = TimePickerDialog(
             requireContext(),
             { _, selectedHour, selectedMinute ->
-                // Update the time in the EditText field
                 timeEditText.setText(String.format("%02d:%02d", selectedHour, selectedMinute))
             },
             hour, minute, true

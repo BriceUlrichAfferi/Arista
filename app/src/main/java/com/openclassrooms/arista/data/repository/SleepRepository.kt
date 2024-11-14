@@ -16,7 +16,6 @@ class SleepRepository(private val sleepDao: SleepDtoDao) {
     }
 
     // Add a new sleep
-
     suspend fun addSleep(startTime: Long, duration: Int, quality: Int) {
         val sleep = Sleep(startTime, duration, quality) // Create the Sleep object
         SleepMapper.toDto(sleep)?.let { sleepDao.insertSleep(it) }
