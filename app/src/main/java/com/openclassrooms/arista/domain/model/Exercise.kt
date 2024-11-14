@@ -1,11 +1,9 @@
 package com.openclassrooms.arista.domain.model
 
-import java.time.LocalDateTime
-
 data class Exercise(
     val id: Long? = null,
-    var startTime: LocalDateTime,
+    var startTime: Long,
     var duration: Int,
-    var category: ExerciseCategory,
+    var category: String,
     var intensity: Int
 )

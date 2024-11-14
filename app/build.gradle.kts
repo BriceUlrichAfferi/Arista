@@ -48,6 +48,7 @@ dependencies {
     //Hilt
     implementation("com.google.dagger:hilt-android:2.42")
     implementation("androidx.hilt:hilt-navigation-fragment:1.0.0")
+    implementation("androidx.room:room-common:2.6.1")
     kapt("com.google.dagger:hilt-android-compiler:2.42")
 
     implementation("androidx.core:core-ktx:1.7.0")
@@ -57,12 +58,25 @@ dependencies {
     implementation("androidx.activity:activity-ktx:1.8.0")
     implementation("androidx.fragment:fragment-ktx:1.6.1")
 
+
+    val room_version = "2.6.1"
+    implementation ("androidx.room:room-runtime:$room_version")
+    kapt ("androidx.room:room-compiler:$room_version")
+    implementation ("androidx.room:room-ktx:$room_version")
+
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.4")
 
     //Tests
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+
+    // Mockito Tests
+    testImplementation("org.mockito:mockito-inline:4.3.1")
+    testImplementation("org.mockito:mockito-android:3.12.4")
+    testImplementation ("org.mockito:mockito-core:4.3.1")
+
+
 }
 kapt {
     correctErrorTypes = true

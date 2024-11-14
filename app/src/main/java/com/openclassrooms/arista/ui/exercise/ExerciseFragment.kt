@@ -20,6 +20,7 @@ import com.openclassrooms.arista.domain.model.ExerciseCategory
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import java.time.LocalDateTime
+import java.time.ZoneOffset
 
 interface DeleteExerciseInterface {
     fun deleteExercise(exercise: Exercise?)
@@ -111,7 +112,8 @@ class ExerciseFragment : Fragment(), DeleteExerciseInterface {
         val category = categorySpinner.selectedItem as ExerciseCategory
 
         val newExercise =
-            Exercise(System.currentTimeMillis(), LocalDateTime.now(), duration, category, intensity)
+            Exercise(System.currentTimeMillis(), LocalDateTime.now().toInstant(ZoneOffset.UTC).toEpochMilli(), duration,
+                category.toString(), intensity)
         viewModel.addNewExercise(newExercise)
     }
 
@@ -158,6 +160,18 @@ class ExerciseFragment : Fragment(), DeleteExerciseInterface {
     }
 
     override fun deleteExercise(exercise: Exercise?) {
-        exercise?.let { viewModel.deleteExercise(it) }
+        exercise?.let {
+            // Show confirmation dialog before deleting the exercise
+            AlertDialog.Builder(requireContext())
+                .setTitle("Delete Exercise")
+                .setMessage("Are you sure you want to delete this exercise?")
+                .setPositiveButton("Yes") { _, _ ->
+                    // Proceed with deletion
+                    viewModel.deleteExercise(it)
+                    Toast.makeText(requireContext(), "Exercise deleted", Toast.LENGTH_SHORT).show()
+                }
+                .setNegativeButton("No", null)
+                .show()
+        }
     }
 }

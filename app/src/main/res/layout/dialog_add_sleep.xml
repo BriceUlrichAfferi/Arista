@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- Date EditText with Calendar Icon -->
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/dateEditText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="Select Date"
+            android:focusable="false"
+            android:clickable="true" />
+
+        <ImageView
+            android:id="@+id/datePickerIcon"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/calendar_month"
+            android:contentDescription="Select Date"
+            android:layout_marginStart="8dp"/>
+    </LinearLayout>
+
+    <!-- Time EditText with Time Picker Icon -->
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/timeEditText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="Select Time"
+            android:focusable="false"
+            android:clickable="true" />
+
+        <ImageView
+            android:id="@+id/timePickerIcon"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/timer_16dp"
+            android:contentDescription="Select Time"
+            android:layout_marginStart="8dp"/>
+    </LinearLayout>
+
+    <!-- Sleep Duration Input -->
+    <EditText
+        android:id="@+id/sleepDurationTimeEditTextDialog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Duration in minutes"
+        android:inputType="number" />
+
+    <!-- Sleep Quality Input -->
+    <EditText
+        android:id="@+id/qualityEditTextDialog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Quality (1-10)"
+        android:inputType="number" />
+
+</LinearLayout>

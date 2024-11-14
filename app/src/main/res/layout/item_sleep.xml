@@ -6,29 +6,42 @@
     android:layout_margin="8dp"
     app:cardCornerRadius="8dp">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:padding="16dp">
 
         <TextView
             android:id="@+id/tv_start_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Start Time: " />
+            android:text="Start Time: "
+            android:layout_alignParentTop="true" />
 
         <TextView
             android:id="@+id/tv_duration"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Duration: " />
+            android:text="Duration: "
+            android:layout_below="@id/tv_start_time" />
 
         <TextView
             android:id="@+id/tv_quality"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Quality: " />
+            android:text="Quality: "
+            android:layout_below="@id/tv_duration" />
 
-    </LinearLayout>
+        <ImageView
+            android:id="@+id/deleteSleep"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_delete"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="16dp"
+            android:padding="8dp" />
+
+    </RelativeLayout>
+
 </androidx.cardview.widget.CardView>

@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.openclassrooms.arista.R
 import com.openclassrooms.arista.domain.model.Exercise
+import com.openclassrooms.arista.toLocalDateTime
 import com.openclassrooms.arista.ui.exercise.ExerciseAdapter.ExerciseViewHolder
 import java.time.format.DateTimeFormatter
 
@@ -27,12 +28,13 @@ class ExerciseAdapter(private val context: DeleteExerciseInterface) :
         val exercise = getItem(position)
         val formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")
         holder.tvStartTime.text =
-            String.format("Start Time: %s", exercise!!.startTime.format(formatter))
+            String.format("Start Time: %s", exercise.startTime.toLocalDateTime().format(formatter))
         holder.tvDuration.text = String.format("Duration: %d minutes", exercise.duration)
         holder.tvCategory.text = String.format("Category: %s", exercise.category.toString())
         holder.tvIntensity.text = String.format("Intensity: %d", exercise.intensity)
         holder.ivDelete.setOnClickListener { _: View? -> context.deleteExercise(exercise) }
     }
+
 
     inner class ExerciseViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var tvStartTime: TextView
